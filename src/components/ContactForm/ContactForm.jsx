@@ -6,8 +6,15 @@ const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleChangeName = e => setName(e.currentTarget.value);
-  const handleChangeNunber = e => setNumber(e.currentTarget.value);
+  const handleChangeInput = e => {
+    const input = e.currentTarget;
+
+    input.name === 'name' && setName(input.value);
+    input.name === 'number' && setNumber(input.value);
+  };
+
+  // const handleChangeName = e => setName(e.currentTarget.value);
+  // const handleChangeNunber = e => setNumber(e.currentTarget.value);
 
   const handleSubmitForm = e => {
     e.preventDefault();
@@ -28,7 +35,7 @@ const ContactForm = ({ onSubmit }) => {
         <input
           className={s.input}
           placeholder="Enter full name"
-          onChange={handleChangeName}
+          onChange={handleChangeInput}
           type="text"
           name="name"
           value={name}
@@ -42,7 +49,7 @@ const ContactForm = ({ onSubmit }) => {
         <input
           className={s.input}
           placeholder="Enter number"
-          onChange={handleChangeNunber}
+          onChange={handleChangeInput}
           type="tel"
           name="number"
           value={number}
